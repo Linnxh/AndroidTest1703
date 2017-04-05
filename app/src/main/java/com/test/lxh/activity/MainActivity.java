@@ -1,4 +1,4 @@
-package com.test.lxh;
+package com.test.lxh.activity;
 
 import android.content.res.Resources;
 import android.graphics.Color;
@@ -11,6 +11,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+
+import com.test.lxh.MyScrollView;
+import com.test.lxh.R;
 
 public class MainActivity extends AppCompatActivity {
     int lastScrollY = 0;

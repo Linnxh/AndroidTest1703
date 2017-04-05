@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 
+import com.test.lxh.activity.MainActivity;
+
 /**
  * Created by LXH on 17/3/30.
  */
