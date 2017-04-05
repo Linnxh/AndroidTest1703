@@ -18,6 +18,7 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         findViewById(R.id.btn_listenScrollView).setOnClickListener(this);
+        findViewById(R.id.btn_album).setOnClickListener(this);
     }
 
     @Override
@@ -25,6 +26,10 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         switch (v.getId()) {
             case R.id.btn_listenScrollView:
                 startActivity(new Intent(this, MainActivity.class));
+                break;
+            case R.id.btn_album:
+                startActivity(new Intent(this, AlbumActivity.class));
+                break;
         }
     }
 
