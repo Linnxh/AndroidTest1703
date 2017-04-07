@@ -1,11 +1,15 @@
 package com.test.lxh.adapter;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.test.lxh.R;
 import com.test.lxh.bean.Album;
 
@@ -26,20 +30,28 @@ public class AlbumAdapter extends BaseAdapter<Album> {
     }
 
     public void setOnAlbumClickListener(OnAlbumClickListener listener) {
-        this.onAlbumClickListener=listener;
+        this.onAlbumClickListener = listener;
     }
 
     @Override
     public void convert(MyViewHolder holder, final Album album, int position) {
         if (album != null && album.media.size() > 0) {
-//            holder.setImageResId(R.id.iv_album_cover, album.media.get(0).path);
-            Glide.with(context).load(album.media.get(0).path).into(holder.getImage(R.id.iv_album_cover));
+
+            Glide.with(context)
+                    .load(album.media.get(0).path)
+                    .asBitmap()
+                    .diskCacheStrategy(DiskCacheStrategy.RESULT)
+                    .priority(Priority.HIGH)
+                    .centerCrop()
+                    .into(holder.getImage(R.id.iv_album_cover));
+
         }
+
         holder.setText(R.id.iv_album_title, album.path.substring(album.path.lastIndexOf("/") + 1));
-        holder.getView(R.id.iv_album_cover).setOnClickListener(new View.OnClickListener() {
+        holder.getView(R.id.album_card).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (onAlbumClickListener!=null){
+                if (onAlbumClickListener != null) {
                     onAlbumClickListener.onAlbumClick(album);
                 }
             }
@@ -47,6 +59,6 @@ public class AlbumAdapter extends BaseAdapter<Album> {
     }
 
     public interface OnAlbumClickListener {
-        void onAlbumClick( Album album);
+        void onAlbumClick(Album album);
     }
 }

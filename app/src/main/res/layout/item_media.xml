@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.test.lxh.view.SquareRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/album_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_margin="5dp"
+    android:clickable="true"
+    android:foreground="@drawable/selector_green_button"
+    app:cardCornerRadius="0dp"
+    app:cardElevation="2dp">
 
-    <ImageView
-        android:id="@+id/iv_media"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_margin="5dp"
-        android:scaleType="centerCrop" />
+        <com.test.lxh.view.SquareImageView
+            android:id="@+id/iv_media"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:scaleType="centerCrop" />
 
-</com.test.lxh.view.SquareRelativeLayout>
+</android.support.v7.widget.CardView>

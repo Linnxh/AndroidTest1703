@@ -19,7 +19,7 @@ import java.util.Date;
 /**
  * Created by dnld on 26/04/16.
  */
-public class Media implements Serializable {
+public class Media implements Serializable,Parcelable {
 
     public String path = null;
     public long dateModified = -1;
@@ -39,6 +39,28 @@ public class Media implements Serializable {
         this.orientation = cur.getInt(4);
     }
 
+    protected Media(Parcel in) {
+        path = in.readString();
+        dateModified = in.readLong();
+        mimeType = in.readString();
+        orientation = in.readInt();
+        uri = in.readString();
+        size = in.readLong();
+        selected = in.readByte() != 0;
+    }
+
+    public static final Creator<Media> CREATOR = new Creator<Media>() {
+        @Override
+        public Media createFromParcel(Parcel in) {
+            return new Media(in);
+        }
+
+        @Override
+        public Media[] newArray(int size) {
+            return new Media[size];
+        }
+    };
+
     @Override
     public String toString() {
         return "Media{" +
@@ -50,6 +72,22 @@ public class Media implements Serializable {
                 ", size=" + size +
                 ", selected=" + selected +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(path);
+        dest.writeLong(dateModified);
+        dest.writeString(mimeType);
+        dest.writeInt(orientation);
+        dest.writeString(uri);
+        dest.writeLong(size);
+        dest.writeByte((byte) (selected ? 1 : 0));
     }
 
 //    private MetadataItem metadata;

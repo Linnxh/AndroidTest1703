@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.os.PersistableBundle;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.KeyEvent;
 
 import com.test.lxh.R;
 import com.test.lxh.adapter.AlbumAdapter;
@@ -22,6 +24,7 @@ import com.test.lxh.bean.Album;
 import com.test.lxh.bean.Media;
 import com.test.lxh.utils.StringUtils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,13 +32,14 @@ import java.util.List;
  * Created by LXH on 17/4/5.
  */
 
-public class AlbumActivity extends AppCompatActivity implements AlbumAdapter.OnAlbumClickListener {
+public class AlbumActivity extends AppCompatActivity implements AlbumAdapter.OnAlbumClickListener, MediaAdapter.onMediaListener {
 
-    RecyclerView recy_album;
-    List<Album> albumList;
-    AlbumAdapter albumAdapter;
-    List<Media> mediaList;
-    MediaAdapter mediaAdapter;
+    private RecyclerView recy_album;
+    private List<Album> albumList;
+    private AlbumAdapter albumAdapter;
+    private List<Media> mediaList;
+    private MediaAdapter mediaAdapter;
+    private boolean isAlbumMode = true;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,7 +49,7 @@ public class AlbumActivity extends AppCompatActivity implements AlbumAdapter.OnA
         recy_album = (RecyclerView) findViewById(R.id.recy_album);
         albumList = new ArrayList<>();
         albumAdapter = new AlbumAdapter(AlbumActivity.this, albumList, R.layout.item_album);
-        recy_album.setLayoutManager(new GridLayoutManager(this,2));
+        recy_album.setLayoutManager(new GridLayoutManager(this, 2));
         recy_album.setAdapter(albumAdapter);
         new PrefetchAlbumsData().execute();
         albumAdapter.setOnAlbumClickListener(this);
@@ -53,10 +57,25 @@ public class AlbumActivity extends AppCompatActivity implements AlbumAdapter.OnA
 
     @Override
     public void onAlbumClick(Album album) {
-        mediaList = getMedia(this, album.id, -1);
-        recy_album.setLayoutManager(new GridLayoutManager(this,3));
-        mediaAdapter = new MediaAdapter(this, mediaList, R.layout.item_media);
-        recy_album.setAdapter(mediaAdapter);
+        if (isAlbumMode) {/*****相册模式****/
+            isAlbumMode = false;
+            mediaList = getMedia(this, album.id, -1);
+            recy_album.setLayoutManager(new GridLayoutManager(this, 3));
+            mediaAdapter = new MediaAdapter(this, mediaList, R.layout.item_media);
+            recy_album.setAdapter(mediaAdapter);
+            mediaAdapter.setOnMediaClickListner(this);
+        }
+
+    }
+
+    @Override
+    public void onMediaClickListener(List<Media> media) {
+        if (!isAlbumMode) {/****media模式**/
+            Intent intent=new Intent(this, SingleMediaActivity.class);
+//            bundle.putParcelableArrayList("media", (ArrayList<? extends Parcelable>) media);
+            intent.putExtra("media", (Serializable) media);
+            startActivity(intent);
+        }
     }
 
 
@@ -184,6 +203,20 @@ public class AlbumActivity extends AppCompatActivity implements AlbumAdapter.OnA
             cur.close();
         }
         return c;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+        if (!isAlbumMode) {/***media模式**/
+            isAlbumMode = true;
+            recy_album.setLayoutManager(new GridLayoutManager(this, 2));
+            recy_album.setAdapter(albumAdapter);
+            albumAdapter.notifyDataSetChanged();
+        } else {
+            finish();
+        }
     }
 
 }
