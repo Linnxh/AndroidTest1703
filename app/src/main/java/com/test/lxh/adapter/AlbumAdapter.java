@@ -43,6 +43,8 @@ public class AlbumAdapter extends BaseAdapter<Album> {
                     .diskCacheStrategy(DiskCacheStrategy.RESULT)
                     .priority(Priority.HIGH)
                     .centerCrop()
+//                    .error()
+//                    .fallback()
                     .into(holder.getImage(R.id.iv_album_cover));
 
         }
