@@ -1,4 +1,5 @@
-##6、图片上实现水波纹效果
+
+## 6、图片上实现水波纹效果
 添加外层CardView
 给其设置foreground属性，
 注意要给CardView设置点击事件，并且设置clickable="true"
@@ -42,7 +43,7 @@
     <item android:drawable="@color/green" />
 </selector>
 ```
-##5、判断scrollview下拉上滑
+## 5、判断scrollview下拉上滑
 自定义scrollView
 重写onTouchEvent方法
 自定义接口OnScrollListener
@@ -170,7 +171,7 @@ android:scrollbarSize="4dp"
 参考链接
 [Android必知必会-自定义Scrollbar样式](http://likfe.com/2016/05/16/diyScrollbar/)
 
-####android:scrollbarStyle
+#### android:scrollbarStyle
 | 属性值 | 效果|
 | :-: | :-: |
 | insideOverlay | 默认值，表示在padding区域内并且覆盖在view上|
@@ -224,7 +225,7 @@ android:scrollbarSize="4dp"
 ```
 
 
-##1、热更新
+## 1、热更新
 ### 常见方案
 微信开源：[Tinker](https://github.com/Tencent/tinker)
 大众点评：[Nuwa](https://github.com/jasonross/Nuwa)
@@ -237,7 +238,7 @@ QQ空间：[qq](https://zhuanlan.zhihu.com/p/20308548?columnSlug=magilu)
 * 一个ClassLoader可以包含多个dex文件，每个dex文件是一个Element，多个dex排列成一个有序的dexElements数组
 * 当找类的时候会遍历dexElements数组，从dex文件中找类，找到则返回，否则继续下一个dex文件查找
 * 热补丁的方案，其实就是将有问题的类单独打包成一个dex文件（如：patch.dex），然后将这个dex插入到dexElements数组的最前面去。
-###热修复的基本原理并不多，目前已知可用的热修复实现的原理主要有以下几种：
+### 热修复的基本原理并不多，目前已知可用的热修复实现的原理主要有以下几种：
 
 1. 基于 Xposed 实现的无侵入的运行时 AOP (Aspect-oriented Programming)  框架，可以实现在线修复 Bug，修复粒度方法级别，但是由于对 ART 虚拟机不支持，导致其对 Android 5.0、6.0 均不支持，使用局限性太大。目前基于这一原理实现的解决方案是手淘团队开源的 Dexposed项目。
 2. native hook 方式，其核心部分在 JNI 层对方法进行替换，替换有问题的方法，修复粒度方法级别，无法在类中新增和删减字段，可以做到即时生效，该原理的实现方案主要是阿里团队开源的 AndFix 。
@@ -275,7 +276,7 @@ HotFix 的使用中不被允许的情况
 * 方法的参数类型有限制
 * 打补丁限制较多，以上的限制在打补丁时均需要注意
 
-#####Nuwa
+##### Nuwa
 
 该项目在去年刚出现时应该算比较火热，但是由于存在的兼容性问题，让作者也渐渐放弃了该项目，目前来说将该方案应用到项目中是有一定风险的。
 
@@ -297,7 +298,7 @@ HotFix 的使用中不被允许的情况
     * 修复粒度：类级别
     * 实现原理：ClassLoader 方式
 
-#####RocooFix
+##### RocooFix
 
 总体来说，该开源方案应该是算比较完整的解决方案，作者目前还在维护，对各个 Android 版本的兼容性也做了不少工作，期待作者的后续更新。
 
@@ -313,7 +314,7 @@ HotFix 的使用中不被允许的情况
 * 目前就项目下的 issue 来看，还是会存在兼容性问题，对于采用了 APT 技术的项目也存在一些问题
 * 动态修复方式还有待检验，使用的是 Legend 项目中的相关技术
 
-#####Tinker_imitator
+##### Tinker_imitator
 总体来说，该方案目前还停留在 demo 状态，感觉离实际应用到项目中还需要一段时间，基于 dex 文件全量替换的方式我们更多还是期待微信团队的开源。
 
 * 作者：zzz40500
