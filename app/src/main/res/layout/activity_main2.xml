@@ -13,10 +13,33 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="监听scrollview" />
+
     <Button
         android:id="@+id/btn_album"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:text="album" />
+
+    <Button
+        android:id="@+id/btn_startService"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="点击开启轮询服务" />
+
+    <Button
+        android:id="@+id/btn_span"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="SpannableString和SpannableStringBuilder" />
+
+    <Button
+        android:id="@+id/btn_calender"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="自定义calender" />
+
 </LinearLayout>

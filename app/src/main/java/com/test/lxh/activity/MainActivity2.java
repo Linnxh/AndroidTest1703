@@ -4,13 +4,34 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.BackgroundColorSpan;
+import android.text.style.ClickableSpan;
+import android.text.style.ForegroundColorSpan;
+import android.text.style.ImageSpan;
+import android.text.style.RelativeSizeSpan;
+import android.text.style.StrikethroughSpan;
+import android.text.style.StyleSpan;
+import android.text.style.SubscriptSpan;
+import android.text.style.SuperscriptSpan;
+import android.text.style.URLSpan;
+import android.text.style.UnderlineSpan;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.test.lxh.R;
+import com.test.lxh.calender.CalendarActivity;
 import com.test.lxh.service.AppService;
 
 /**
@@ -25,8 +46,11 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_main2);
         findViewById(R.id.btn_listenScrollView).setOnClickListener(this);
         findViewById(R.id.btn_album).setOnClickListener(this);
+        findViewById(R.id.btn_span).setOnClickListener(this);
+        findViewById(R.id.btn_startService).setOnClickListener(this);
+        findViewById(R.id.btn_calender).setOnClickListener(this);
 
-        startService();
+
     }
 
     private boolean isServiceRunning;
@@ -62,6 +86,15 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.btn_album:
                 startActivity(new Intent(this, AlbumActivity.class));
+                break;
+            case R.id.btn_startService:
+                startService();
+                break;
+            case R.id.btn_span:
+                startActivity(new Intent(this, SpannActivity.class));
+                break;
+            case R.id.btn_calender:
+                startActivity(new Intent(this, CalendarActivity.class));
                 break;
         }
     }

@@ -40,11 +40,15 @@
             android:theme="@style/AppTheme" />
 
         <service android:name=".service.AppService" />
+
         <receiver android:name=".AppAlarmReceiver">
             <intent-filter android:priority="1000">
-                <action android:name="com.lxh.myreceiver"></action>
+                <action android:name="com.lxh.myreceiver" />
             </intent-filter>
         </receiver>
+
+        <activity android:name=".activity.SpannActivity"></activity>
+        <activity android:name=".calender.CalendarActivity"></activity>
     </application>
 
 </manifest>
