@@ -42,15 +42,18 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        /**
+         * https://juejin.im/post/590f09ec128fe100584ee6b0
+         * app中监听onActivityCreated的使用，给toolbar设置相应操作，以下两只顺序和平常不太一样
+         */
         setContentView(R.layout.activity_main2);
+        super.onCreate(savedInstanceState);
         findViewById(R.id.btn_listenScrollView).setOnClickListener(this);
         findViewById(R.id.btn_album).setOnClickListener(this);
         findViewById(R.id.btn_span).setOnClickListener(this);
         findViewById(R.id.btn_startService).setOnClickListener(this);
         findViewById(R.id.btn_calender).setOnClickListener(this);
-
-
+        findViewById(R.id.btn_waterMark).setOnClickListener(this);
     }
 
     private boolean isServiceRunning;
@@ -95,6 +98,9 @@ public class MainActivity2 extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.btn_calender:
                 startActivity(new Intent(this, CalendarActivity.class));
+                break;
+            case R.id.btn_waterMark:
+                startActivity(new Intent(this, AddWaterMarkActivity.class));
                 break;
         }
     }

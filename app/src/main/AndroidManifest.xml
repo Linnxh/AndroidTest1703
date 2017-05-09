@@ -21,7 +21,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme2">
-        <activity android:name=".activity.MainActivity2">
+        <activity
+            android:name=".activity.MainActivity2"
+            android:label="MainActivity2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,8 +38,7 @@
             android:label="AlbumActivity" />
         <activity
             android:name=".activity.SingleMediaActivity"
-            android:label="@string/title_activity_single_media"
-            android:theme="@style/AppTheme" />
+            android:label="@string/title_activity_single_media" />
 
         <service android:name=".service.AppService" />
 
@@ -47,8 +48,9 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".activity.SpannActivity"></activity>
-        <activity android:name=".calender.CalendarActivity"></activity>
+        <activity android:name=".activity.SpannActivity" />
+        <activity android:name=".calender.CalendarActivity" />
+        <activity android:name=".activity.AddWaterMarkActivity"></activity>
     </application>
 
 </manifest>

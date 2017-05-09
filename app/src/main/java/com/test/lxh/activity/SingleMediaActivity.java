@@ -28,8 +28,8 @@ public class SingleMediaActivity extends AppCompatActivity {
     }
 
     public void initView() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
         ArrayList<Media> media = (ArrayList<Media>) getIntent().getSerializableExtra("media");
         pager_singleMedia = (ViewPager) findViewById(R.id.pager_singleMedia);
         MediaPagerAdapter adapter = new MediaPagerAdapter(getSupportFragmentManager(), media);

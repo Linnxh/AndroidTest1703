@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.test.lxh.activity.AddWaterMarkActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btn_openCamera"
+            android:layout_width="368dp"
+            android:layout_height="wrap_content"
+            android:text="打开照相机"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="0dp" />
+
+        <Button
+            android:id="@+id/btn_openAlbum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="打开图库" />
+
+        <ImageView
+            android:id="@+id/iv_waterMark_orignal"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:scaleType="centerInside" />
+
+        <ImageView
+            android:id="@+id/iv_waterMark_add"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:scaleType="fitXY" />
+    </LinearLayout>
+</ScrollView>
